@@ -4,7 +4,7 @@ Usage:
 
 ```
 docker build -t apt-finder .
-docker run --rm -it apt-finder
+docker run -e ZIP=<YOUR-ZIP> --rm -it apt-finder
 getting locations ids...
 found 5 locations
 getting appointments for 20220221 MISSION SANTA CLARA

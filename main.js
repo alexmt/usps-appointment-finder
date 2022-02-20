@@ -82,9 +82,17 @@ async function getAppointments(date, fdbIds) {
         appt => appt.appointmentStatus != 'Unavailable' && appt.appointmentStatus != 'Closed' && appt.appointmentStatus != 'Holiday');
 }
 
-async function main() {
+async function main(args) {
+    let zip = '';
+    if (args.length < 1) {
+        console.log('Usage: node main.js <zip>');
+        return;
+    } else {
+        zip = args[0];
+    }
+
     console.info('getting locations ids...');
-    const locations = await getLocations('95051');
+    const locations = await getLocations(zip);
     console.info(`found ${locations.length} locations`);
     const dates = getDates();
     for (let date of dates) {
@@ -99,4 +107,4 @@ async function main() {
     }
 }
 
-main().catch(console.error);
+main(process.argv.slice(2)).catch(console.error);
