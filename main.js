@@ -79,7 +79,10 @@ async function getAppointments(date, fdbIds) {
         })
     }).then(resp => resp.json());
     return appointments.appointmentTimeDetailExtended.filter(
-        appt => appt.appointmentStatus != 'Unavailable' && appt.appointmentStatus != 'Closed' && appt.appointmentStatus != 'Holiday');
+        appt => appt.appointmentStatus != 'Unavailable' &&
+        appt.appointmentStatus != 'Closed' &&
+        appt.appointmentStatus != 'Holiday' &&
+        appt.appointmentStatus != 'Past');
 }
 
 async function main(args) {
